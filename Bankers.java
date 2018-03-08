@@ -1,11 +1,27 @@
+//on a high level:
+//Banker's algorithm keeps deadlock at bay by tracking resources
+//and allocating appropriately. It does this by tracking 3 things:
+//The maximum a process can allocate (MAX)
+//The amount it has already allocated (ALLOCATE)
+//The resources available to use (AVAIL)
+//It allows resources to be allocated if the amount requested (NEED) is less
+//than or equal to the amount available. If not, it waits until they are.
+
 import java.util.Scanner;
 
 public class Bankers{
+    //Banker's algorithm works on 3 things:
+    //This implementation includes extras: NEED and 2 helper variables
+    //np,nr store user input and put it into the right place in input()
     private int need[][],allocate[][],max[][],avail[][],np,nr;
-    
+
+    //input() handles adding all the variables to the arrays:
+    //MAX,ALLOCATE,AVAIL
     private void input(){
+     //Scans user input
      Scanner sc=new Scanner(System.in);
      System.out.print("Enter no. of processes and resources : ");
+     //Sets length/width of the 2D arrays using user input
      np=sc.nextInt();  //no. of process
      nr=sc.nextInt();  //no. of resources
      need=new int[np][nr];  //initializing arrays

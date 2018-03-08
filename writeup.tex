@@ -9,6 +9,8 @@
             factor=1100,
             stretch=10,
             shrink=10]{microtype}
+\usepackage{listings}
+\usepackage{xcolor}
 
 \microtypecontext{spacing=nonfrench}
 
@@ -22,6 +24,24 @@
 \begin{enumerate}
 
 \item Use the following code to illustrate the Banker’s algorithm and explain what is occurring at each step. Annotate your output to illustrate what is happening.
+
+\end{enumerate}
+
+\begin{center}
+\lstinputlisting[language=Java,
+                 basicstyle=\footnotesize \ttfamily,
+                 commentstyle=\color{green},
+                 keywordstyle=\color{blue},
+                 stringstyle=\color{purple},
+                 linewidth=\textwidth,
+                 showstringspaces=false,
+                 numbers=left,
+                 numbersep=5pt,
+                 numberstyle=\tiny]{Bankers.java}
+\end{center}
+
+\begin{enumerate}
+\setcounter{enumi}{1}
 
 \item Give examples of inputs where a safe allocation of processes occurs and one where processes cannot be allocated safely.
 
