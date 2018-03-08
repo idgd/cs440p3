@@ -33,21 +33,64 @@
                  commentstyle=\color{green},
                  keywordstyle=\color{blue},
                  stringstyle=\color{purple},
-                 linewidth=\textwidth,
                  showstringspaces=false,
                  numbers=left,
                  numbersep=5pt,
-                 numberstyle=\tiny]{Bankers.java}
+                 numberstyle=\tiny,
+                 title=\lstname]{Bankers.java}
+
+\newpage
+
+\begin{lstlisting}[basicstyle=\footnotesize \ttfamily,
+       numbers=left,
+       numbersep=5pt,
+       numberstyle=\tiny,
+       title=Output]
+////SUCCESSFUL
+
+Enter no. of processes and resources : 2 1 //2 processes, 1 resource
+Enter allocation matrix -->
+2 2 //already has 2 allocated
+Enter max matrix -->
+4 4 //can go up to 4
+Enter available matrix -->
+6 6 //there's 6 available for both processes
+Allocated process : 0
+Allocated process : 1
+Safely allocated //(4 - 2) < 6, you're good to go
+
+
+////UNSUCCESSFUL
+
+Enter no. of processes and resources : 2 1 //2 processes, 1 resource
+Enter allocation matrix -->
+2 2 //already has 2 allocated
+Enter max matrix -->
+4 4 //can go up to 4
+Enter available matrix -->
+1 1 //only has 1 available for both
+All proceess cant be allocated safely //(4 - 2) > 2, fails
+
+\end{lstlisting}
+
 \end{center}
+
+\newpage
 
 \begin{enumerate}
 \setcounter{enumi}{1}
 
 \item Give examples of inputs where a safe allocation of processes occurs and one where processes cannot be allocated safely.
 
+\textbf{See Output, above. If \texttt{(allocation - max) \textgreater available}, allocation fails.}
+
 \item What conditions cause the former to happen? The latter? Clearly indicate these in your writeup. (e.g., for all i, j, when max[i][j] \textless avail[i][j])
 
+\textbf{See answer 2. Output contains both a failure and success and explains why; resources available were less than resources needed by a process.}
+
 \item From a big picture perspective, why is this implementation of resource allocation so widely appreciated?
+
+\textbf{It's so simple that it can be understood and implemented intuitively, but it solves a majority of the problems associated with resource allocation.}
 
 \end{enumerate}
 
