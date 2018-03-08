@@ -28,7 +28,8 @@ public class Bankers{
      max=new int[np][nr];
      allocate=new int[np][nr];
      avail=new int[1][nr];
-     
+
+     //uses user input to define 2D arrays
      System.out.println("Enter allocation matrix -->");
      for(int i=0;i<np;i++)
           for(int j=0;j<nr;j++)
@@ -42,13 +43,15 @@ public class Bankers{
         System.out.println("Enter available matrix -->");
         for(int j=0;j<nr;j++)
          avail[0][j]=sc.nextInt();  //available matrix
-        
+        //closes input
         sc.close();
     }
     
     private int[][] calc_need(){
        for(int i=0;i<np;i++)
          for(int j=0;j<nr;j++)  //calculating need matrix
+          //subtracts max it CAN request from what it's already allocated to
+          //find remainders
           need[i][j]=max[i][j]-allocate[i][j];
        
        return need;
@@ -57,37 +60,49 @@ public class Bankers{
     private boolean check(int i){
        //checking if all resources for ith process can be allocated
        for(int j=0;j<nr;j++) 
+       //if available resources are less than needed resources, return false
        if(avail[0][j]<need[i][j])
           return false;
-   
+    //else return true
     return true;
     }
 
     public void isSafe(){
+       //calls input to gather user data
        input();
+       //calls calc_need to calculate what each process wants
        calc_need();
+       //each process boolean to see if it gets wanted resources
        boolean done[]=new boolean[np];
        int j=0;
 
        while(j<np){  //until all process allocated
        boolean allocated=false;
        for(int i=0;i<np;i++)
+        //calls check to see if resources can be allocated
         if(!done[i] && check(i)){  //trying to allocate
             for(int k=0;k<nr;k++)
+            //allocates resources to the process, thus subtracting from
+            //available resources.
             avail[0][k]=avail[0][k]-need[i][k]+max[i][k];
          System.out.println("Allocated process : "+i);
+         //tells the allocation array that it's successful
          allocated=done[i]=true;
                j++;
              }
+          //if no allocation occured, break out of forloop; it failed
           if(!allocated) break;  //if no allocation
        }
        if(j==np)  //if all processes are allocated
+        //everything went okay!
         System.out.println("\nSafely allocated");
        else
+        //not so much this time
         System.out.println("All proceess cant be allocated safely");
     }
     
     public static void main(String[] args) {
+       //calls main logic
        new Bankers().isSafe();
     }
 }
