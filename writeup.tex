@@ -90,7 +90,7 @@ All proceess cant be allocated safely //(4 - 2) > 2, fails
 
 \item From a big picture perspective, why is this implementation of resource allocation so widely appreciated?
 
-\textbf{It's so simple that it can be understood and implemented intuitively, but it solves a majority of the problems associated with resource allocation.}
+\textbf{It's so simple that it can be understood and implemented intuitively, but it solves a majority of the problems associated with resource allocation. It guarantees that resources are not exhausted, and that deadlock never occurs; it can be used to help schedulers work properly, and it prevents the deadliest errors in resource allocation, all in a function which only takes 70 ish lines of Java to implement. Its elegance and guarantees are what makes it so famous.}
 
 \end{enumerate}
 
